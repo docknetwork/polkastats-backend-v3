@@ -5,16 +5,15 @@ services:
   # Blockchain archive node
   #
   substrate-node:
-    image: substrate-client:kusama-latest
+    image: docknetwork/dock-substrate:rpoa-test
     hostname: substrate-node
-    build: ./substrate-client
     volumes:
       - 'substrate-data:/data'
     ports:
       - '30333:30333'
       - '9933:9933'
       - '9944:9944'
-    command: -d /data --unsafe-ws-external --rpc-cors all --pruning=archive --name 'Polkastats 🤖 v3' --chain polkadot
+    command: -d /data --unsafe-ws-external --rpc-cors all --pruning=archive --name 'Polkastats v3 - Dock' --chain ./cspec/poa_testnet.json
     restart: on-failure
   #
   # SQL data base
@@ -64,7 +63,12 @@ services:
     environment:
       - NODE_ENV=production
       - WS_PROVIDER_URL=ws://substrate-node:9944
-      - SUBSTRATE_NETWORK=polkadot
+      - SUBSTRATE_NETWORK=substrate
+      - CRAWLER_STAKING_DISABLE=1
+      - CRAWLER_ERA_LISTENER_DISABLE=1
+      - CRAWLER_ERA_HARVESTER_DISABLE=1
+      # - CRAWLER_BLOCK_LISTENER_DISABLE=1
+      # - CRAWLER_BLOCK_HARVESTER_DISABLE=1
 #
 # Persisten volumes
 #
