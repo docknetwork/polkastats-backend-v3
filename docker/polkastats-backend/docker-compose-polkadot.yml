@@ -64,6 +64,7 @@ services:
       - NODE_ENV=production
       - WS_PROVIDER_URL=ws://substrate-node:9944
       - SUBSTRATE_NETWORK=substrate
+      - CRAWLER_PHRAGMEN_DISABLE=1
       - CRAWLER_STAKING_DISABLE=1
       - CRAWLER_ERA_LISTENER_DISABLE=1
       - CRAWLER_ERA_HARVESTER_DISABLE=1
