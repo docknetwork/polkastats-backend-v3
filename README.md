@@ -46,6 +46,21 @@ To run them separately:
 npm run docker:<container-name>
 ```
 
+# Deploying to prod
+- in docker-compose file:
+  - ensure hasura admin secret is set
+  - ensure hasura admin console is enabled
+  - ensure hasura default role is set to anonymous
+
+```
+npm run docker
+```
+
+- navigate to https://explorer.dock.io/api/console/ and login to the console
+- go to the data tab and then track all tables, once all tables are tracked you must modify permissions for each table
+- add the role "anonymous" with all select permissions (without any checks, including aggregation queries, ensure to select all fields) only
+- database should now be ready for public access and the BE should start populating it
+
 ## List of current containers
 
 - substrate-node
