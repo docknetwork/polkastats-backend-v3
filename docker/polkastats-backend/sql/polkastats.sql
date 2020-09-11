@@ -1,6 +1,6 @@
 GRANT ALL PRIVILEGES ON DATABASE polkastats TO polkastats;
 
-CREATE TABLE IF NOT EXISTS block (  
+CREATE TABLE IF NOT EXISTS block (
   block_number BIGINT NOT NULL,
   block_number_finalized BIGINT NOT NULL,
   block_author TEXT NOT NULL,
@@ -24,12 +24,12 @@ CREATE TABLE IF NOT EXISTS block (
   total_events INT NOT NULL,
   num_transfers INT NOT NULL,
   new_accounts INT NOT NULL,
-  total_issuance TEXT NOT NULL,
+  total_issuance TEXT NOT NULL
   timestamp BIGINT NOT NULL,
-  PRIMARY KEY ( block_number )  
+  PRIMARY KEY ( block_number )
 );
 
-CREATE TABLE IF NOT EXISTS harvester_error (  
+CREATE TABLE IF NOT EXISTS harvester_error (
   block_number BIGINT NOT NULL,
   error TEXT NOT NULL,
   timestamp BIGINT NOT NULL
@@ -108,17 +108,17 @@ CREATE TABLE IF NOT EXISTS nominator  (
   PRIMARY KEY ( block_height, session_index, account_id )
 );
 
-CREATE TABLE IF NOT EXISTS event  (  
+CREATE TABLE IF NOT EXISTS event  (
   block_number BIGINT NOT NULL,
   event_index INT NOT NULL,
   section TEXT NOT NULL,
   method TEXT NOT NULL,
   phase TEXT NOT NULL,
   data TEXT NOT NULL,
-  PRIMARY KEY ( block_number, event_index ) 
+  PRIMARY KEY ( block_number, event_index )
 );
 
-CREATE TABLE IF NOT EXISTS extrinsic  (  
+CREATE TABLE IF NOT EXISTS extrinsic  (
   block_number BIGINT NOT NULL,
   extrinsic_index INT NOT NULL,
   is_signed BOOLEAN NOT NULL,
@@ -129,23 +129,23 @@ CREATE TABLE IF NOT EXISTS extrinsic  (
   hash TEXT NOT NULL,
   doc TEXT NOT NULL,
   success BOOLEAN NOT NULL,
-  PRIMARY KEY ( block_number, extrinsic_index ) 
+  PRIMARY KEY ( block_number, extrinsic_index )
 );
 
-CREATE TABLE IF NOT EXISTS log  (  
+CREATE TABLE IF NOT EXISTS log  (
   block_number BIGINT NOT NULL,
   log_index INT NOT NULL,
   type TEXT,
   engine TEXT NOT NULL,
   data TEXT NOT NULL,
-  PRIMARY KEY ( block_number, log_index ) 
+  PRIMARY KEY ( block_number, log_index )
 );
 
-CREATE TABLE IF NOT EXISTS phragmen  (  
+CREATE TABLE IF NOT EXISTS phragmen  (
   block_height BIGINT NOT NULL,
   phragmen_json TEXT NOT NULL,
   timestamp BIGINT NOT NULL,
-  PRIMARY KEY ( block_height )  
+  PRIMARY KEY ( block_height )
 );
 
 CREATE TABLE IF NOT EXISTS validator_era_staking  (
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS validator_era_staking  (
   stake_info TEXT,
   estimated_payout BIGINT NOT NULL,
   timestamp BIGINT NOT NULL,
-  PRIMARY KEY ( era_index, stash_id )  
+  PRIMARY KEY ( era_index, stash_id )
 );
 
 CREATE TABLE IF NOT EXISTS validator_era_slash  (
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS validator_era_slash  (
   stash_id TEXT,
   amount BIGINT NOT NULL,
   timestamp BIGINT NOT NULL,
-  PRIMARY KEY ( era_index, stash_id )  
+  PRIMARY KEY ( era_index, stash_id )
 );
 
 CREATE TABLE IF NOT EXISTS nominator_era_slash  (
@@ -175,10 +175,10 @@ CREATE TABLE IF NOT EXISTS nominator_era_slash  (
   stash_id TEXT,
   amount BIGINT NOT NULL,
   timestamp BIGINT NOT NULL,
-  PRIMARY KEY ( era_index, stash_id )  
+  PRIMARY KEY ( era_index, stash_id )
 );
 
-CREATE TABLE IF NOT EXISTS account  (  
+CREATE TABLE IF NOT EXISTS account  (
   account_id TEXT NOT NULL,
   identity TEXT NOT NULL,
   identity_display TEXT NOT NULL,
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS account  (
   timestamp BIGINT NOT NULL,
   block_height BIGINT NOT NULL,
   is_staking BOOLEAN NOT NULL,
-  PRIMARY KEY ( account_id )  
+  PRIMARY KEY ( account_id )
 );
 
 CREATE TABLE IF NOT EXISTS system  (
@@ -200,19 +200,20 @@ CREATE TABLE IF NOT EXISTS system  (
   node_name TEXT NOT NULL,
   node_version TEXT NOT NULL,
   timestamp BIGINT NOT NULL,
-  PRIMARY KEY ( block_height )  
+  PRIMARY KEY ( block_height )
 );
 
 CREATE TABLE IF NOT EXISTS chain  (
   block_height BIGINT NOT NULL,
   session_index INT NOT NULL,
   total_issuance TEXT NOT NULL,
+  total_emission TEXT NOT NULL,
   active_accounts BIGINT NOT NULL,
   timestamp BIGINT NOT NULL,
-  PRIMARY KEY ( block_height )  
+  PRIMARY KEY ( block_height )
 );
 
-CREATE TABLE IF NOT EXISTS total (  
+CREATE TABLE IF NOT EXISTS total (
   name TEXT,
   count BIGINT NOT NULL,
   PRIMARY KEY ( name )
