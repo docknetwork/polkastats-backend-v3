@@ -5,7 +5,7 @@ services:
   # Blockchain archive node
   #
   substrate-node:
-    image: docknetwork/dock-substrate:rpoa-test
+    image: docknetwork/dock-substrate
     hostname: substrate-node
     volumes:
       - 'substrate-data:/data'
