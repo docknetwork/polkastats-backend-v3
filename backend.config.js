@@ -59,7 +59,10 @@ module.exports = {
       enabled: !process.env.CRAWLER_CHAIN_DISABLE,
       module: require('./lib/crawlers/chain'),
     },
-
+    {
+      enabled: !process.env.CRAWLER_EPOCH_DISABLE,
+      module: require('./lib/crawlers/epoch'),
+    },
     {
       enabled: !process.env.CRAWLER_ERA_LISTENER_DISABLE,
       module: require('./lib/crawlers/eraListener'),
