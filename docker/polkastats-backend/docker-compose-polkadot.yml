@@ -4,17 +4,17 @@ services:
   #
   # Blockchain archive node
   #
-  substrate-node:
-    image: docknetwork/dock-substrate
-    hostname: substrate-node
-    volumes:
-      - 'substrate-data:/data'
-    ports:
-      - '30333:30333'
-      - '9933:9933'
-      - '9944:9944'
-    command: -d /data --unsafe-ws-external --rpc-cors all --pruning=archive --name 'Polkastats v3 - Dock' --chain ./cspec/danforth_raw.json
-    restart: on-failure
+  #substrate-node:
+  #  image: docknetwork/dock-substrate
+  #  hostname: substrate-node
+  #  volumes:
+  #    - 'substrate-data:/data'
+  #  ports:
+  #    - '30333:30333'
+  #    - '9933:9933'
+  #    - '9944:9944'
+  #  command: -d /data --unsafe-ws-external --rpc-cors all --pruning=archive --name 'Polkastats v3 - Dock' --chain ./cspec/danforth_raw.json
+  #  restart: on-failure
   #
   # SQL data base
   #
@@ -59,11 +59,12 @@ services:
       dockerfile: ./docker/polkastats-backend/backend/Dockerfile
     depends_on:
       - 'postgres'
-      - 'substrate-node'
+      # - 'substrate-node'
     restart: on-failure
     environment:
       - NODE_ENV=production
-      - WS_PROVIDER_URL=ws://substrate-node:9944
+      # - WS_PROVIDER_URL=ws://substrate-node:9944
+      - WS_PROVIDER_URL=wss://danforth-1.dock.io
       - SUBSTRATE_NETWORK=substrate
       - CRAWLER_PHRAGMEN_DISABLE=1
       - CRAWLER_STAKING_DISABLE=1
