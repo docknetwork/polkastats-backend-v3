@@ -64,7 +64,7 @@ services:
     environment:
       - NODE_ENV=production
       # - WS_PROVIDER_URL=ws://substrate-node:9944
-      - WS_PROVIDER_URL=wss://danforth-1.dock.io
+      - WS_PROVIDER_URL=wss://mainnet-node.dock.io
       - SUBSTRATE_NETWORK=substrate
       - CRAWLER_PHRAGMEN_DISABLE=1
       - CRAWLER_STAKING_DISABLE=1
