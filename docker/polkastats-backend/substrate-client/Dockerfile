@@ -2,13 +2,13 @@ FROM phusion/baseimage:0.11
 LABEL maintainer "@ColmenaLabs_svq"
 LABEL description="Small image with the Substrate binary."
 
-ARG VERSION=v0.8.22
+ARG VERSION=v0.8.25
 
 RUN apt-get update && apt-get install wget curl jq -y
 
 WORKDIR /usr/local/bin
 
-RUN wget https://github.com/w3f/polkadot/releases/download/$VERSION/polkadot \
+RUN wget https://github.com/paritytech/polkadot/releases/download/$VERSION/polkadot \
     && chmod +x polkadot
 
 # FINAL PREPARATIONS
