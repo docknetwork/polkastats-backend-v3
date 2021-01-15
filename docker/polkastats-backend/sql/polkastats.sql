@@ -228,6 +228,7 @@ CREATE INDEX IF NOT EXISTS extrinsic_section_idx ON extrinsic (section);
 CREATE INDEX IF NOT EXISTS extrinsic_method_idx ON extrinsic (method);
 CREATE INDEX IF NOT EXISTS extrinsic_signer_idx ON extrinsic (signer);
 CREATE INDEX IF NOT EXISTS extrinsic_args_idx ON extrinsic (args);
+CREATE INDEX IF NOT EXISTS ON extrinsic (hash);
 
 GRANT ALL PRIVILEGES ON TABLE block TO polkastats;
 GRANT ALL PRIVILEGES ON TABLE harvester_error TO polkastats;
